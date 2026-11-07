@@ -1,12 +1,165 @@
-﻿<Window x:Class="paint.MainWindow"
+<Window x:Class="paint.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:paint"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Графический редактор" 
+        Height="650" Width="1000"
+        MinHeight="450" MinWidth="750"
+        WindowStartupLocation="CenterScreen">
+    
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
+        <Border Grid.Row="0" Background="#F4F4F6" BorderBrush="#D1D1D6" BorderThickness="0,0,0,1" Padding="8,6">
+            <WrapPanel VerticalAlignment="Center">
+                
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,10,0">
+                    <TextBlock Text="Инструмент:" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                    <RadioButton x:Name="RadioPencil" Content="Карандаш" GroupName="ToolsGroup" IsChecked="True" 
+                                 Checked="ToolRadio_Checked" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                    <RadioButton x:Name="RadioLine" Content="Линия" GroupName="ToolsGroup" 
+                                 Checked="ToolRadio_Checked" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                    <RadioButton x:Name="RadioRectangle" Content="Прямоугольник" GroupName="ToolsGroup" 
+                                 Checked="ToolRadio_Checked" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                    <RadioButton x:Name="RadioEllipse" Content="Эллипс" GroupName="ToolsGroup" 
+                                 Checked="ToolRadio_Checked" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                </StackPanel>
+
+                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="5,0,12,0"/>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,10,0">
+                    <TextBlock Text="Цвет:" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                    <ComboBox x:Name="ColorComboBox" Width="130" VerticalAlignment="Center" SelectionChanged="ColorComboBox_SelectionChanged">
+                        <ComboBoxItem Tag="#000000" IsSelected="True">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="14" Height="14" Background="Black" BorderBrush="Gray" BorderThickness="1" Margin="0,0,6,0"/>
+                                <TextBlock Text="Чёрный"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+                        <ComboBoxItem Tag="#808080">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="14" Height="14" Background="Gray" BorderBrush="DarkGray" BorderThickness="1" Margin="0,0,6,0"/>
+                                <TextBlock Text="Серый"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+                        <ComboBoxItem Tag="#FF0000">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="14" Height="14" Background="Red" BorderBrush="DarkGray" BorderThickness="1" Margin="0,0,6,0"/>
+                                <TextBlock Text="Красный"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+                        <ComboBoxItem Tag="#FFA500">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="14" Height="14" Background="Orange" BorderBrush="DarkGray" BorderThickness="1" Margin="0,0,6,0"/>
+                                <TextBlock Text="Оранжевый"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+                        <ComboBoxItem Tag="#FFD700">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="14" Height="14" Background="Gold" BorderBrush="DarkGray" BorderThickness="1" Margin="0,0,6,0"/>
+                                <TextBlock Text="Жёлтый"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+                        <ComboBoxItem Tag="#008000">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="14" Height="14" Background="Green" BorderBrush="DarkGray" BorderThickness="1" Margin="0,0,6,0"/>
+                                <TextBlock Text="Зелёный"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+                        <ComboBoxItem Tag="#00BFFF">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="14" Height="14" Background="DeepSkyBlue" BorderBrush="DarkGray" BorderThickness="1" Margin="0,0,6,0"/>
+                                <TextBlock Text="Голубой"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+                        <ComboBoxItem Tag="#0000FF">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="14" Height="14" Background="Blue" BorderBrush="DarkGray" BorderThickness="1" Margin="0,0,6,0"/>
+                                <TextBlock Text="Синий"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+                        <ComboBoxItem Tag="#800080">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="14" Height="14" Background="Purple" BorderBrush="DarkGray" BorderThickness="1" Margin="0,0,6,0"/>
+                                <TextBlock Text="Фиолетовый"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+                        <ComboBoxItem Tag="#FFC0CB">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="14" Height="14" Background="Pink" BorderBrush="DarkGray" BorderThickness="1" Margin="0,0,6,0"/>
+                                <TextBlock Text="Розовый"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+                        <ComboBoxItem Tag="#8B4513">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="14" Height="14" Background="SaddleBrown" BorderBrush="DarkGray" BorderThickness="1" Margin="0,0,6,0"/>
+                                <TextBlock Text="Коричневый"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+                        <ComboBoxItem Tag="#FFFFFF">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="14" Height="14" Background="White" BorderBrush="DarkGray" BorderThickness="1" Margin="0,0,6,0"/>
+                                <TextBlock Text="Белый"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+                    </ComboBox>
+                    
+                    <Border x:Name="ColorPreviewBorder" Width="20" Height="20" Background="Black" 
+                            BorderBrush="#A0A0A0" BorderThickness="1" CornerRadius="2" Margin="6,0,0,0" ToolTip="Текущий выбранный цвет"/>
+                </StackPanel>
+
+                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="5,0,12,0"/>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,10,0">
+                    <TextBlock Text="Толщина:" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                    <Slider x:Name="ThicknessSlider" Minimum="1" Maximum="30" Value="3" Width="90" 
+                            TickFrequency="1" IsSnapToTickEnabled="True" VerticalAlignment="Center"
+                            ValueChanged="ThicknessSlider_ValueChanged"/>
+                    <TextBlock x:Name="ThicknessText" Text="3 px" Width="36" VerticalAlignment="Center" Margin="6,0,0,0"/>
+                </StackPanel>
+
+                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="5,0,12,0"/>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button x:Name="BtnClear" Content="Очистить холст" Padding="10,4" Margin="0,0,8,0" Click="BtnClear_Click"/>
+                    <Button x:Name="BtnSave" Content="Сохранить изображение" Padding="10,4" Click="BtnSave_Click"/>
+                </StackPanel>
+
+            </WrapPanel>
+        </Border>
+
+        <Border Grid.Row="1" Background="#E8E8ED" Padding="10">
+            <Border Background="White" BorderBrush="#B8B8C0" BorderThickness="1" CornerRadius="2">
+                <Canvas x:Name="PaintCanvas" Background="White" ClipToBounds="True" Cursor="Cross"
+                        MouseDown="PaintCanvas_MouseDown" 
+                        MouseMove="PaintCanvas_MouseMove" 
+                        MouseUp="PaintCanvas_MouseUp" 
+                        MouseLeave="PaintCanvas_MouseLeave"/>
+            </Border>
+        </Border>
+
+        <StatusBar Grid.Row="2" Background="#F0F0F2">
+            <StatusBarItem>
+                <TextBlock x:Name="StatusTextTool" Text="Инструмент: Карандаш"/>
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem>
+                <TextBlock x:Name="StatusTextColor" Text="Цвет: Чёрный"/>
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem>
+                <TextBlock x:Name="StatusTextThickness" Text="Толщина: 3 px"/>
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem>
+                <TextBlock x:Name="StatusTextCoordinates" Text="X: 0, Y: 0"/>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>

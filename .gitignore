@@ -3,3 +3,8 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
+.idea/.idea.paint/.idea/encodings.xml
+.idea/.idea.paint/.idea/indexLayout.xml
+.idea/.idea.paint/.idea/vcs.xml
+paint/AssemblyInfo.cs
+paint/App.xaml.cs

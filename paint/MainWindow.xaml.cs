@@ -13,7 +13,7 @@ public partial class MainWindow : Window
     private Saver _saver;
     private Color _selectedColor;
     private double _selectedThickness;
-
+//опопои
     public MainWindow()
     {
         InitializeComponent();
